@@ -1,0 +1,17 @@
+{
+  "name": "weblab",
+  "version": "1.0.0",
+  "description": "API's   GET /api/tasks return the list of all tasks   GET /api/tasks/:id returns only 1 specific task based on id  POST /api/tasks creates an new task  PUT /api/tasks/:id update an existing task based on id  DELETE /api/tasks/:id delete an task based on id  PATCH /api/tasks/:id/completed updating task based on id",
+  "main": "db.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^5.1.0",
+    "sqlite3": "^5.1.7"
+  }
+}
