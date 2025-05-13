@@ -4,8 +4,8 @@ let tasks = [];
 let currentFilter = 'all';
 let currentProject = 'null';
 
-const taskList=document.getElementById('main .list-group-flush');
-const addTaskBtn=document.getElementById('.fixed-right-bottom');
+const taskList = document.querySelector('main ul.list-group-flush');
+const addTaskBtn = document.querySelector('button.fixed-right-bottom');
 const filterLinks = document.querySelectorAll('.list-group-item-action');
 const projectLinks = document.querySelectorAll('.my-5 .list-group-item-action');
 const filterTitle = document.querySelector('main h1');
@@ -137,7 +137,7 @@ function showTaskForm(taskToEdit=null)
         const formContainer=document.createElement('div');
         formContainer.innerHTML=formHtml;
         document.body.appendChild(formContainer.firstChild);
-        const modal=new boostrap.Modal(document.getElementById('taskFormModal'));
+        const modal = new bootstrap.Modal(document.getElementById('taskFormModal'));
         modal.show();
         document.getElementById('saveTaskBtn').addEventListener('click',async ()=>{
             const description=document.getElementById('description').value.trim();
@@ -176,39 +176,7 @@ function showTaskForm(taskToEdit=null)
             this.remove();
         });
 }
-function filterTasks()
-{
-    let filtered= [...tasks];
-    if(currentProject)
-    {
-        filtered=filtered.filter(task=>task.project===currentProject);
-    }
-    const today=new Date().setHours(0,0,0,0);
-    const nextWeek=new Date();
-    nextWeek.setDate(today.getDate()+7);
-    nextWeek.setHours(0,0,0,0);
-    switch(currentFilter){
-        case 'important':
-            filtered=filtered.filter(task=>task.important);
-            break;
-        case 'today':
-            filtered=filtered.filter(task=>{
-                const taskDate=new Date(task.deadline);
-                return taskDate.setHours(0,0,0,0)===today;
-            });
-            break;
-        case 'next7days':
-            filtered=filtered.filter(task=>{
-                const taskDate=new Date(task.deadline);
-                return taskDate>=today && taskDate<=nextWeek;
-            });
-            break;
-        case 'private':
-            filtered=filtered.filter(task=>task.private);
-            break;
-    }
-    return filtered;
-}
+
 function filterTasks() {
     let filtered = [...tasks];
 
